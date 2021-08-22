@@ -25,7 +25,6 @@ const Questionnaire = ({
       {question && (
         <Question
           question={question}
-          timerForAnswer={6}
           onResponse={onResponse}
           timerReached={onNext}
         />
