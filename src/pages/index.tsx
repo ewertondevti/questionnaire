@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import QuestionModel from "../../BackEnd/model/question";
 import Questionnaire from "../components/Questionnaire";
 
-const BASE_URL = "http://localhost:3000/api";
-
 const initialValue = new QuestionModel(0, "", [], false);
 
 const Home: NextPage = () => {
@@ -17,7 +15,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const fetchQuestionsIds = async () => {
-      const response = await fetch(`${BASE_URL}/questionnaire`);
+      const response = await fetch(`/api/questionnaire`);
       const questionsIds: number[] = await response.json();
 
       setQuestionsIds(questionsIds);
@@ -29,8 +27,8 @@ const Home: NextPage = () => {
   useEffect(() => {
     const fetchQuestions = async (id: number) => {
       try {
-        const response = await fetch(`${BASE_URL}/questions/${id}`).then(
-          (result) => result.json()
+        const response = await fetch(`/api/questions/${id}`).then((result) =>
+          result.json()
         );
         const question = QuestionModel.createObject(response);
 
